@@ -64,8 +64,9 @@ def lattice_scan():
     #ecut_list = np.arange(5.0, 85.0, 5.0)
     alat = 5.0
     output = compute_energy(alat=alat, ecut=ecut, nk=nk)
+    print(output)
     energy = output['energy']
-    print(energy)
+    #print(energy)
 
 
 if __name__ == '__main__':
