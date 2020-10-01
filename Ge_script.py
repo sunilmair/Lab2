@@ -3,6 +3,8 @@ from ase.spacegroup import crystal
 from ase.io import write
 import matplotlib.pyplot as plt
 
+import numpy as np
+
 
 def make_struc(alat):
     """
@@ -28,7 +30,7 @@ def compute_energy(alat, nk, ecut):
     pseudopots = {'Ge': PseudoPotential(name=potname, path=potpath, ptype='uspp', element='Ge', functional='LDA')}
     struc = make_struc(alat=alat)
     kpts = Kpoints(gridsize=[nk, nk, nk], option='automatic', offset=False)
-    runpath = Dir(path=os.path.join(os.environ['WORKDIR'], "Lab2/Problem1", str(alat)))
+    runpath = Dir(path=os.path.join(os.environ['WORKDIR'], "Lab2/Problem1", str(ecut)))
     input_params = PWscf_inparam({
         'CONTROL': {
             'calculation': 'scf',
@@ -57,8 +59,9 @@ def compute_energy(alat, nk, ecut):
 
 
 def lattice_scan():
-    nk = 3
-    ecut = 30
+    nk = 4
+    ecut = 30.0
+    #ecut_list = np.arange(5.0, 85.0, 5.0)
     alat = 5.0
     output = compute_energy(alat=alat, ecut=ecut, nk=nk)
     energy = output['energy']
