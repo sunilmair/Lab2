@@ -2,7 +2,7 @@
     tstress = .true.
     tprnfor = .true.
     pseudo_dir = '/home/modeler/qe_pseudo'
-    outdir = '/home/modeler/WORK/Lab2/test'
+    outdir = '/home/modeler/Lab2/test'
     calculation = 'scf'
 /
 &SYSTEM
