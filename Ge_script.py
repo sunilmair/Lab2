@@ -30,7 +30,7 @@ def compute_energy(alat, nk, ecut):
     pseudopots = {'Ge': PseudoPotential(name=potname, path=potpath, ptype='uspp', element='Ge', functional='LDA')}
     struc = make_struc(alat=alat)
     kpts = Kpoints(gridsize=[nk, nk, nk], option='automatic', offset=False)
-    runpath = Dir(path=os.path.join(os.environ['WORKDIR'], "Lab2/Problem1/t1", str(ecut)))
+    runpath = Dir(path=os.path.join(os.environ['WORKDIR'], "Lab2/Problem2/t1", str(nk)))
     input_params = PWscf_inparam({
         'CONTROL': {
             'calculation': 'scf',
@@ -67,7 +67,24 @@ def lattice_scan():
     #energy = output['energy']
     #print(energy)
 
+def problem1():
+    #change runpathline in compute_energy to:
+    #runpath = Dir(path=os.path.join(os.environ['WORKDIR'], "Lab2/Problem1/t1", str(ecut)))
+
+    nk = 4
+    ecut_list = np.arange(5.0, 85.0, 5.0)
+    alat = 5.0
+    output = [compute_energy(alat=alat, ecut=ecut, nk=nk) for ecut in ecut_list]
+
+def problem2():
+    # change runpathline in compute_energy to:
+    # runpath = Dir(path=os.path.join(os.environ['WORKDIR'], "Lab2/Problem2/t1", str(nk)))
+
+    nk_list = np.arange(1, 9, 1)
+    ecut = 10.0
+    alat = 5.0
+    output = [compute_energy(alat=alat, ecut=ecut, nk=nk) for nk in nk_list]
 
 if __name__ == '__main__':
     # put here the function that you actually want to run
-    lattice_scan()
+    problem2()
