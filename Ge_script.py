@@ -44,7 +44,7 @@ def compute_energy(alat, nk, ecut):
     pseudopots = {'Ge': PseudoPotential(name=potname, path=potpath, ptype='uspp', element='Ge', functional='LDA')}
     struc = make_struc(alat=alat)
     kpts = Kpoints(gridsize=[nk, nk, nk], option='automatic', offset=False)
-    runpath = Dir(path=os.path.join(os.environ['WORKDIR'], "Lab2/Problem3/t1", str(nk)))
+    runpath = Dir(path=os.path.join(os.environ['WORKDIR'], "Lab2/Problem5/t1", str(alat) + '_' + str(ecut)))
     input_params = PWscf_inparam({
         'CONTROL': {
             'calculation': 'scf',
@@ -82,7 +82,7 @@ def compute_energy_problem3(alat, z_displacement, nk, ecut):
     pseudopots = {'Ge': PseudoPotential(name=potname, path=potpath, ptype='uspp', element='Ge', functional='LDA')}
     struc = make_struc_problem3(alat=alat, z_displacement=z_displacement)
     kpts = Kpoints(gridsize=[nk, nk, nk], option='automatic', offset=False)
-    runpath = Dir(path=os.path.join(os.environ['WORKDIR'], "Lab2/Problem3/t1", str(ecut)))
+    runpath = Dir(path=os.path.join(os.environ['WORKDIR'], "Lab2/Problem4/t1", str(nk)))
     input_params = PWscf_inparam({
         'CONTROL': {
             'calculation': 'scf',
@@ -145,6 +145,28 @@ def problem3():
     output = [compute_energy_problem3(alat=alat, z_displacement=z_displacement, ecut=ecut, nk=nk) for ecut in ecut_list]
 
 
+def problem4():
+
+    nk_list = np.arange(1, 10, 1)
+    ecut = 10
+    alat = 5.0
+    z_displacement = 0.05
+    output = [compute_energy_problem3(alat=alat, z_displacement=z_displacement, ecut=ecut, nk=nk) for nk in nk_list]
+
+
+def problem5():
+
+    nk = 4
+    ecut_list = np.arange(5.0, 85.0, 5.0)
+    alat_1 = 10.70*0.529177249
+    alat_2 = 10.75*0.529177249
+    output = [compute_energy(alat=alat_1, ecut=ecut, nk=nk)['energy'] - compute_energy(alat=alat_2, ecut=ecut, nk=nk)['energy'] for ecut in ecut_list]
+    print(alat_1)
+    print(alat_2)
+    print(output)
+
+
 if __name__ == '__main__':
     # put here the function that you actually want to run
-    problem3()
+    problem4()
+    #problem5()
