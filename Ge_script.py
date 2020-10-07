@@ -171,7 +171,7 @@ def lattice_scan():
     output = compute_energy(alat=alat, ecut=ecut, nk=nk)
     print(output)
     energy = output['energy']
-    #print(energy)
+    print(energy)
 
 
 def problem1():
@@ -245,4 +245,5 @@ def problem7c():
 
 if __name__ == '__main__':
     # put here the function that you actually want to run
-    problem7c()
+    #problem7c()
+    lattice_scan()
