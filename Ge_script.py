@@ -27,9 +27,7 @@ def make_struc_problem3(alat, z_displacement):
     """
     # set primitive_cell=False if you want to create a simple cubic unit cell with 8 atoms
     gecell = crystal('Ge', [(0, 0, 0)], spacegroup=227, cellpar=[alat, alat, alat, 90, 90, 90], primitive_cell=True)
-    print(gecell.positions)
-    gecell.positions[0] = (gecell.positions[0][0], gecell.positions[0][1], gecell.position[0][2] + z_displacement*alat)
-    print(gecell.positions)
+    gecell.positions[0] = (gecell.positions[0][0], gecell.positions[0][1], gecell.positions[0][2] + z_displacement*alat)
     # check how your cell looks like
     # write('s.cif', gecell)
     structure = Struc(ase2struc(gecell))
@@ -84,7 +82,7 @@ def compute_energy_problem3(alat, z_displacement, nk, ecut):
     pseudopots = {'Ge': PseudoPotential(name=potname, path=potpath, ptype='uspp', element='Ge', functional='LDA')}
     struc = make_struc_problem3(alat=alat, z_displacement=z_displacement)
     kpts = Kpoints(gridsize=[nk, nk, nk], option='automatic', offset=False)
-    runpath = Dir(path=os.path.join(os.environ['WORKDIR'], "Lab2/Problem3/t1", str(nk)))
+    runpath = Dir(path=os.path.join(os.environ['WORKDIR'], "Lab2/Problem3/t1", str(ecut)))
     input_params = PWscf_inparam({
         'CONTROL': {
             'calculation': 'scf',
@@ -144,11 +142,9 @@ def problem3():
     ecut_list = np.arange(5.0, 85.0, 5.0)
     alat = 5.0
     z_displacement = 0.05
-    output = [compute_energy(alat=alat, z_displacement=z_displacement, ecut=ecut, nk=nk) for ecut in ecut_list]
+    output = [compute_energy_problem3(alat=alat, z_displacement=z_displacement, ecut=ecut, nk=nk) for ecut in ecut_list]
 
 
 if __name__ == '__main__':
     # put here the function that you actually want to run
-    make_struc_problem3(5.0, 0.05) #check if struc is good
-    #lattice_scan() #check if 'force' is in 'output'
-    #problem3()
+    problem3()
