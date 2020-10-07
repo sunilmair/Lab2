@@ -147,7 +147,7 @@ def problem3():
 
 def problem4():
 
-    nk_list = np.arange(1, 10, 1)
+    nk_list = np.arange(2, 12, 1)
     ecut = 10
     alat = 5.0
     z_displacement = 0.05
@@ -163,10 +163,10 @@ def problem5():
     output = [compute_energy(alat=alat_1, ecut=ecut, nk=nk)['energy'] - compute_energy(alat=alat_2, ecut=ecut, nk=nk)['energy'] for ecut in ecut_list]
     print(alat_1)
     print(alat_2)
+    print(ecut_list)
     print(output)
 
 
 if __name__ == '__main__':
     # put here the function that you actually want to run
-    problem4()
-    #problem5()
+    problem5()
