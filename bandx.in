@@ -1,0 +1,4 @@
+&BANDS
+    outdir = '/home/modeler/Lab2/test'
+    filband = 'Bandx.dat'
+/
