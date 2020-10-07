@@ -5,7 +5,6 @@
     outdir = '/home/modeler/Lab2/test'
     calculation = 'bands'
     verbosity = 'high'
-    restart_mode = 'from_scratch'
 /
 
 &SYSTEM
@@ -21,7 +20,6 @@
     diagonalization = 'david'
     conv_thr = 1e-07
     mixing_beta = 0.5
-    startingpot = 'atomic'
 /
 
 &IONS
