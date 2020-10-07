@@ -94,7 +94,7 @@ def relax_struc_problem7c(alat, nk, ecut, forc_conv_thr, press_conv_thr):
     input_params = PWscf_inparam({
         'CONTROL': {
             'calculation': 'vc-relax',
-            'forc_conv_thr': forc_conv_thr
+            'forc_conv_thr': forc_conv_thr,
             'pseudo_dir': pseudopath,
             'outdir': runpath.path,
             'tstress': True,
