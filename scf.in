@@ -1,0 +1,39 @@
+&CONTROL
+    tstress = .false.
+    tprnfor = .false.
+    pseudo_dir = '/home/modeler/qe_pseudo'
+    outdir = '/home/modeler/Lab2/test'
+    calculation = 'scf'
+    verbosity = 'low'
+/
+
+&SYSTEM
+    ntyp = 1
+    ibrav = 2
+    celldm(1) = 10.8171069
+    ecutwfc = 30.0
+    nat = 2
+    nbnd = 10
+/
+
+&ELECTRONS
+    diagonalization = 'david'
+    conv_thr = 1e-07
+    mixing_beta = 0.5
+/
+
+&IONS
+/
+
+&CELL
+/
+
+ATOMIC_SPECIES
+  Ge 72.61 Ge.pz-bhs.UPF
+  
+ATOMIC_POSITIONS {alat}
+  Ge 0.00000 0.00000 0.00000
+  Ge 0.25000 0.25000 0.25000
+  
+K_POINTS {automatic}
+  8 8 8 0 0 0
